@@ -1,0 +1,51 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+</head>
+<style>
+  .title {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  #nav-mobile a {
+    color: black;
+  }
+
+  .container {
+    margin-top: 5%;
+  }
+</style>
+
+<body>
+  <% include layouts/navbar %>
+    <!-- Container -->
+    <div class="container">
+
+      <div class="ui middle aligned divided list">
+        <% for(var i=0; i<listusers.length; i++) {%>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <a href="/person/<%= listusers[i].username %>"><img class="ui avatar image" src="<%= listusers[i].profile_picture %>"></a>
+            <div class="content">
+              <%= listusers[i].username %>
+            </div>
+          </div>
+          <% } %>
+      </div>
+
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "Fastshare",
+  "description": "Fastshare bower dependencies",
+  "main": "index.js",
+  "authors": [
+    "Lorengamboa <lorenzogamboagarcia@gmail.com>"
+  ],
+  "dependencies": {
+    "normalize-css": "*",
+    "modernizr": "*",
+    "jquery": "~2.0.2",
+    "underscore": "*",
+    "backbone": "*",
+    "requirejs": "*",
+    "mustache": "*",
+    "semantic": "semantic-ui#^2.2.11"
+  },
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

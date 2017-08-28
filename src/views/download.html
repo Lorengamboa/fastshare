@@ -1,0 +1,103 @@
+<html>
+<title>
+  <%= title %>
+</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+</head>
+<style>
+  .container {
+    margin-top: 20px;
+  }
+
+  .typewriter h1 {
+    width:auto;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation: typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+  }
+  /* The typing effect */
+
+  @keyframes typing {
+    from {
+      width: 0
+    }
+    to {
+      width: 100%
+    }
+  }
+  /* The typewriter cursor effect */
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+</style>
+
+<body>
+  <% include layouts/navbar_profile %>
+    <!-- Container -->
+    <div class="container">
+      <div class="typewriter">
+        <h1><%= file.message %></h1>
+      </div>
+      <h1 class="title center-align">Download File</h1>
+      <div class="center-align">
+        <table class="ui celled striped table">
+          <thead>
+            <tr>
+              <th colspan="3">
+                File content
+                <%= (file.size/1000000000)%> GigaBytes
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i<file['content'].length; i++) {%>
+              <tr>
+                <td class="collapsing">
+                  <%= file['content'][i].name %>
+                </td>
+                <td class="collapsing">
+                  <%= file['content'][i].size %> bytes
+                </td>
+                <td class="collapsing">
+                  <%= file['content'][i].extension %>
+                </td>
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+
+
+        <a href="<%= downloadable %>"><button class="positive ui button">
+          <i class="download icon"></i>
+          DOWNLOAD
+        </button></a>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</body>
+
+</html>

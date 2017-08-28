@@ -1,0 +1,45 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+</head>
+<style>
+  .container {
+    margin-top: 20px;
+  }
+</style>
+
+<body>
+  <% include layouts/navbar_profile %>
+    <!-- Container -->
+    <div class="container">
+
+        <div class="ui centered card">
+          <div class="content">
+            <img class="ui medium circular image" src="<%= friend['profile_picture'] %>" />
+            <div class="meta">
+              <span class="category"><%= friend['username'] %></span>
+            </div>
+            <div class="description">
+              <p></p>
+            </div>
+          </div>
+          <div class="extra content">
+            <!--<div class="right floated author">
+              <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt
+            </div>-->
+          </div>
+        </div>
+
+      </div>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+</head>
+<style>
+  .container {
+    margin-top: 20px;
+  }
+</style>
+
+<body>
+  <% include layouts/navbar_profile %>
+    <!-- Container -->
+    <div class="container">
+      <div class="row">
+        <!-- Profile Pic column -->
+        <div class="col s12 m4 l4">
+          <div class="ui card">
+            <div class="image">
+              <img class="responsive-img" src="<%= user.profile_picture %>"></a>
+            </div>
+            <div class="content">
+              <div class="ui buttons">
+                <button class="ui button"><i class="setting icon"></i>Settings</button>
+                <form action="/profile/uprofilepic" enctype="multipart/form-data" id="uprofile" method="post">
+                  <label for="profilepic" class="ui icon button">
+                      <i class="photo icon"></i>
+                      change avatar</label>
+                  <input type="file" id="profilepic" name="profilepic" accept="image/*" style="display:none" >
+                </form>
+              </div>
+              <div class="ui clearing divider"></div>
+              <span class="header"><%= user.username %></span>
+              <div class="meta">
+                <span class="date">Joined <%= user.created_at %></span>
+              </div>
+              <div class="description">
+                <%= user.bios %>
+              </div>
+            </div>
+            <div class="extra content">
+              <a>
+          <i class="user icon"></i> 0 Friends
+          </a>
+            </div>
+          </div>
+        </div>
+        <!-- Profile Settings column -->
+        <div class="col s12 m8">
+          <div class="grey lighten-3 card-panel">
+            <ul class="input-list style-1 clearfix">
+              <div class="row">
+                <li class="col s12">
+                  <div class="ui feed">
+                    <% for(var i=0; i<user.feed.length; i++) {%>
+                      <div class="event">
+                        <div class="label">
+                          <img src="<%= user.profile_picture %>">
+                        </div>
+                        <div class="content">
+                          <div class="summary">
+                            <a>
+                              <% if(user.feed[i].user.toString() == user._id.toString()) { %>
+                                You
+                                <% } else { %>
+                                  <%= user.feed[i].user %> %>
+                                    <% } %>
+                            </a>
+                            <%= user.feed[i].subject %>
+                              <div class="date">
+                                <%= user.feed[i].when %>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% } %>
+                  </div>
+              </div>
+              </li>
+          </div>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script>
+      $("#profilepic").change(function() {
+        $('#uprofile').submit();
+      });
+    </script>
+</body>
+
+</html>

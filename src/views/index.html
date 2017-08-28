@@ -1,0 +1,67 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+</head>
+<style>
+  /*body {
+    // background-image: url("/img/background/<%=background %>.jpg");
+  }*/
+</style>
+
+<body>
+  <% include layouts/navbar %>
+    <!-- Container -->
+    <div class="container">
+      <!-- Upload region -->
+      <form id="form-uploader">
+        <div class="row">
+          <div class="col offset-l4 offset-m3 offset-s2">
+            <div id="uploader" class="card-panel"></div>
+          </div>
+          <!-- Message part -->
+          <div class="col offset-l4 offset-m3 offset-s2">
+              <textarea id="message" name="message" placeholder="Want to attach a message?"></textarea>
+          </div>
+        </div>
+
+        <!-- Progress bard upload -->
+        <div class="row">
+          <div class="col offset-l4 l4">
+            <div id="upload-progress" class="progress" style="display:none">
+              <div id="upload-determinate" class="determinate" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+          <div class="center-align"> <input id="btn-submit" class="btn success center-align green" type="button" value="UPLOAD" />
+          </div>
+        </div>
+      </form>
+      <h2 id="download-link" class="center-align" style="font-family:'Patrick Hand SC',cursive;">
+    </h2>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="js/materialoader.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+      var uploader = new materialoader('uploader', {
+        x: "300",
+        y: "160",
+        skin: "grey lighten-3",
+        nelements: 2,
+        fontfamily: "'Patrick Hand SC', cursive;"
+      });
+    </script>
+</body>
+
+</html>

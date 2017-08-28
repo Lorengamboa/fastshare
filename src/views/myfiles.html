@@ -1,0 +1,146 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+</head>
+<style>
+  .container {
+    margin-top: 20px;
+  }
+</style>
+
+<body>
+  <% include layouts/navbar_profile %>
+    <!-- Container -->
+    <div class="container">
+      <div class="row">
+        <div class="col m8">
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col m4">
+          <div class="ui statistics">
+            <div class="statistic">
+              <div class="value" style="color:red">
+                <i class="disk outline icon"></i>
+                <%= (disk/1000000000).toFixed(2) %> GB
+              </div>
+              <div class="label">
+                Space used
+              </div>
+            </div>
+            <div class="statistic">
+              <div class="value" style="color:blue">
+                <i class="disk outline icon"></i>
+                <%= 2-(disk/1000000000).toFixed(2) %> GB
+              </div>
+              <div class="label">
+                Space left
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col l12">
+          <table class="ui celled striped table">
+            <thead>
+              <th>url</th>
+              <th>message</th>
+              <th>size</th>
+              <th>date</th>
+              <th>delete</th>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<files.length; i++) {%>
+                <tr>
+                  <td class="collapsing">
+                    <i class="folder icon"></i>
+                    <%= files[i].query %>
+                  </td>
+                  <td class="collapsing">
+                    <%= files[i].message %>
+                  </td>
+                  <td>
+                    <%= files[i].size %> bytes
+                  </td>
+                  <td class="collapsing">
+                    <%= files[i].createdAt %>
+                  </td>
+                  <td class="collapsing">
+                    <button data-query="<%= files[i].query %>" class="ui red button delfile">
+                      <i class="Trash icon"></i>
+                      delete
+                    </button>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script>
+      var gboccupied = <%= (disk/1000000000).toFixed(2) %>;
+      var gbleft = 2 - gboccupied;
+      var prctaken = gboccupied / 2 * 100;
+      var left = 100 - prctaken;
+      var data2 = [{
+          value: prctaken,
+          color: "#F7464A",
+          highlight: "#FF5A5E",
+          label: "space used in % "
+        },
+        {
+          value: left,
+          color: "#46BFBD",
+          highlight: "#5AD3D1",
+          label: "space left in % "
+        }
+      ];
+
+      var options = {
+        bezierCurve: false,
+        animation: true,
+        animationEasing: "easeOutQuart",
+        showScale: false,
+        tooltipEvents: ["mousemove", "touchstart", "touchmove"],
+        tooltipCornerRadius: 3,
+        pointDot: true,
+        pointDotRadius: 4,
+        datasetFill: true,
+        scaleShowLine: true,
+        animationEasing: "easeOutBounce",
+        animateRotate: true,
+        animateScale: true,
+      };
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myDoughnutChart = new Chart(ctx).Doughnut(data2, options);
+
+      $('.delfile').click(function() {
+        var query = $(this).attr("data-query");
+        console.log('/file/' + query);
+        $.ajax({
+          url: '/file/' + query,
+          type: 'DELETE',
+          success: function(result) {
+            console.log(result);
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      });
+    </script>
+</body>
+
+</html>

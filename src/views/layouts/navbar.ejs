@@ -1,0 +1,23 @@
+<nav class="teal lighten-5">
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">
+      <img class="responsive-img" src="/img/logo_template.png" style="height: 64px;">
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="upgrade.html">Pro +</a></li>
+      <li><a href="help.html">Help</a></li>
+      <% if(user){ %>
+        <li><a href="/profile"><img class="nav-pf" src="<%= user.profile_picture %>" style="height: 64px;width: 64px;"></a></li>
+        <li><a class="dropdown-button" href="#" data-activates="dropdown1"><i class="material-icons right">menu</i></a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="/profile/myfiles">My files</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+        <% }  %>
+          <% if(!user){ %>
+            <li><a href="register">Register</a></li>
+            <li><a href="login">Login</a></li>
+            <% }  %>
+    </ul>
+  </div>
+</nav>

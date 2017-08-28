@@ -1,0 +1,112 @@
+<html>
+<title>Upload file manager</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+</head>
+<style>
+  body {
+    background: rgba(146, 127, 127, 0.18);
+  }
+
+  .container {
+    width: 300px;
+    margin: auto;
+    background: white;
+    border-radius: 0 0 5px 5px;
+  }
+
+  .header {
+    text-align: center;
+    background-color: darkblue;
+    background-image: url("https://thumbs.dreamstime.com/t/material-design-background-modern-creative-horisontal-colorful-65738690.jpg");
+    background-size: cover;
+    color: white;
+    height: 90px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .header h3 {
+    padding-top: 35px;
+  }
+
+  form {
+    margin: 40px 10px 20px 10px;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 10%;
+    border: none;
+    border-radius: 2px;
+    border-style: none;
+    margin-bottom: 30px;
+  }
+
+  input[type="checkbox"]+label {
+    font-size: 11px;
+  }
+
+  .span-container span {
+    font-size: 11px;
+    color: #29458A;
+  }
+
+  .span-container span:nth-child(1) {
+    float: left;
+    margin-left: 10%;
+  }
+
+  .span-container span:nth-child(2) {
+    float: right;
+    margin-right: 10%;
+  }
+
+  .content {
+    padding-bottom: 30px;
+  }
+</style>
+
+<body>
+  <% include layouts/navbar %>
+    <!-- Container -->
+    <div class="container">
+      <div class="header">
+        <h3>Sign Up</h3>
+      </div>
+      <div class="content">
+        <form action="/register" method="post">
+          <input type="text" name="username" placeholder="Username" />
+          <input type="text" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="password2" placeholder="Repeat password" />
+          <input type="checkbox" id="checkboxID" />
+          <div class="row">
+            <div class="center-align"> <input id="btn-submit" type="submit" class="btn success center-align blue" type="button" value="Sign Up" />
+            </div>
+          </div>
+        </form>
+        <div class="span-container">
+          <a href="#">
+          <span>
+            <img src="http://icons.veryicon.com/256/System/Android%201/Very%20Basic%20lock.png" width=10 alt="" />
+            Forgot your password?
+          </span>
+        </a>
+          <a href="#">
+          <span>Create an account</span>
+        </a>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script>
+      Materialize.toast('<%= signupMessage %>', 3000)
+    </script>
+</body>
+
+</html>
